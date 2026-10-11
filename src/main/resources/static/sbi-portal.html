@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/assistant.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriPulse Matrix - Partner Bank Portal Redirection</title>
+    <title>AgriPulse Matrix - SBI Partner Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Assistant Widget Stylesheet -->
-    <link rel="stylesheet" href="/css/assistant.css">
 </head>
 <body class="bg-[#FAF8F5] text-[#2C241E] font-sans min-h-screen flex flex-col relative overflow-x-hidden">
 
     <!-- Top Navigation Header -->
     <header class="bg-[#3D312A] text-white px-6 py-3.5 flex items-center justify-between sticky top-0 z-40 shadow-md">
         <div class="flex items-center space-x-4">
-            <!-- 3-Line Hamburger Menu Toggle Button -->
             <button onclick="toggleSidebar()" class="text-[#EFE9DF] hover:text-[#D9A378] text-xl focus:outline-none p-1 transition-colors">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-[#A0522D] flex items-center justify-center text-white font-bold text-xl shadow-md">
                     <i class="fa-solid fa-wheat-awn"></i>
@@ -32,116 +27,88 @@
                 </div>
             </div>
         </div>
-
-        <div class="flex items-center space-x-6">
-            <div class="flex items-center space-x-3">
-                <span class="text-xs text-[#EFE9DF]">SBI Digital Lending Desk</span>
-            </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-xs text-[#EFE9DF]">SBI Direct Bank Integration</span>
         </div>
     </header>
 
-    <!-- Sliding Collapsible Sidebar Drawer -->
-    <!-- Unified Sidebar Navigation Component -->
-<aside id="sidebar-drawer" class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col justify-between shadow-xl">
-    <div class="p-6">
-        <div class="flex items-center space-x-3 mb-8">
-            <div class="h-9 w-9 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-lg text-white">
-                🌱
+    <!-- Sliding Sidebar Drawer -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-[#3D312A]/50 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+    
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-[#312721] text-[#EFE9DF] border-r border-[#4A3B32] flex flex-col justify-between p-4 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl overflow-y-auto">
+        <div class="space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-[#4A3B32]">
+                <span class="text-sm font-bold text-[#D9A378] tracking-wider uppercase">Navigation Hub</span>
+                <button onclick="toggleSidebar()" class="text-[#B8A79B] hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <span class="text-xl font-bold tracking-tight text-white">AgriPulse Matrix</span>
+            <div class="space-y-4">
+                <nav class="space-y-1">
+                    <a href="dashboard.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-chart-line text-[#D9A378] w-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="onboarding.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-user-plus text-[#D9A378] w-5"></i>
+                        <span>Farmer Onboarding</span>
+                    </a>
+                    <a href="loans.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-hand-holding-dollar text-[#D9A378] w-5"></i>
+                        <span>KCC Loans & APCI</span>
+                    </a>
+                    <a href="sbi-portal.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-[#42342C] text-[#FAF8F5] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-building-columns text-green-400 w-5"></i>
+                        <span>SBI Partner Portal</span>
+                    </a>
+                    <a href="traceability.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-barcode text-purple-400 w-5"></i>
+                        <span>Traceability</span>
+                    </a>
+                </nav>
+            </div>
         </div>
-
-        <nav class="space-y-1" id="nav-links-container">
-            <a href="dashboard.html" data-route="dashboard" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                Dashboard
-            </a>
-            <a href="onboarding.html" data-route="onboarding" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                Farmer Onboarding
-            </a>
-            <a href="loans.html" data-route="loans" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                KCC Loans
-            </a>
-            <a href="traceability.html" data-route="traceability" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                Traceability
-            </a>
-            <a href="sbi-portal.html" data-route="sbi-portal" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                SBI Partner Portal
-            </a>
-        </nav>
-    </div>
-
-    <div class="p-4 border-t border-slate-800">
-        <a href="index.html" class="flex items-center px-4 py-2 text-sm text-red-400 hover:text-red-300 rounded-lg hover:bg-slate-800 transition-colors">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-            Sign Out / Exit
-        </a>
-    </div>
-</aside>
-
-<script>
-    // Automatically highlight active route based on current URL path
-    document.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'dashboard.html';
-        document.querySelectorAll('#nav-links-container .nav-item').forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('bg-emerald-600', 'text-white');
-                link.classList.remove('text-slate-300');
-            }
-        });
-    });
-</script>
+        <div class="bg-[#3D312A] border border-[#4A3B32] p-3 rounded-xl text-center mt-4">
+            <p class="text-xs text-[#B8A79B]">Connected System</p>
+            <p class="text-sm font-bold text-[#D9A378]">Secure Bank Gateway</p>
+        </div>
+    </aside>
 
     <!-- MAIN CONTENT AREA -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8 space-y-8">
-        
-        <div class="bg-white border border-[#EAE3D2] rounded-2xl p-6 shadow-sm space-y-4">
-            <span class="bg-[#EFE9DF] text-[#6B513E] text-xs font-bold px-3 py-1 rounded-full">Secure Partner Bank Handoff</span>
-            <h2 class="text-2xl font-black text-[#3D312A] mt-2">State Bank of India (SBI) - Digital Loan Redirection Gateway</h2>
-            <p class="text-xs text-[#6B574B]">Your pre-verified farmer credentials, land ownership records, and APCI credit rating have been securely encoded into a signed JWT token for instant disbursement approval.</p>
-        </div>
-
-        <!-- Handoff Status Card -->
-        <div class="bg-white border border-[#EAE3D2] rounded-2xl p-6 shadow-sm space-y-6">
-            <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 rounded-xl bg-green-100 text-green-700 flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-check-circle"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-[#3D312A]">JWT Payload Verified & Signed</h3>
-                    <p id="jwt-token-display" class="text-xs text-[#6B574B] mt-0.5">Token Payload: farmerId=verified, scheme=KCC-Micro, status=APPROVED</p>
-                </div>
+    <main class="flex-1 max-w-4xl w-full mx-auto px-6 py-12 flex flex-col items-center justify-center text-center">
+        <div class="bg-white border border-[#EAE3D2] rounded-2xl p-10 shadow-sm space-y-6 max-w-2xl w-full">
+            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto text-3xl shadow-inner">
+                <i class="fa-solid fa-building-columns"></i>
             </div>
-            <div class="pt-4 border-t border-[#EAE3D2] flex space-x-4">
-                <button onclick="alert('Loan successfully submitted to SBI Portal! Funds will be disbursed to your linked bank account shortly.')" class="bg-[#2d5a27] text-white text-xs font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
-                    Confirm & Disburse Funds
-                </button>
-                <a href="/dashboard.html" class="bg-[#FAF8F5] border border-[#EAE3D2] text-[#3D312A] text-xs font-bold px-6 py-3 rounded-xl hover:bg-[#EAE3D2] transition-colors">
-                    Return to Dashboard
+            <div class="space-y-2">
+                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Official Banking Partner</span>
+                <h2 class="text-2xl font-black text-[#3D312A] mt-2">State Bank of India (SBI) Agri-Loan Portal</h2>
+                <p class="text-xs text-[#6B574B] leading-relaxed">
+                    You are being connected to the official State Bank of India portal for Kisan Credit Card (KCC) loans and direct agricultural financing disbursement. Your verified APCI credit score will be securely passed for instant processing.
+                </p>
+            </div>
+
+            <div class="pt-4 space-y-3">
+                <!-- Redirect Button to Official SBI Website -->
+                <a href="https://sbi.bank.in/web/agri-rural/home" target="_blank" rel="noopener noreferrer"
+                   class="w-full inline-flex items-center justify-center bg-[#1e3d1a] hover:bg-[#2d5a27] text-white font-bold text-xs py-4 px-6 rounded-xl transition-all shadow-md space-x-2">
+                    <span>Proceed to Official SBI Portal</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
                 </a>
+                <p class="text-[11px] text-gray-400">Opens securely in a new browser tab.</p>
             </div>
         </div>
-
     </main>
 
     <!-- Footer -->
     <footer class="bg-[#3D312A] text-[#B8A79B] text-xs py-6 px-6 border-t border-[#524238] mt-auto">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div>
-                <p class="font-semibold text-[#FAF8F5]">AgriPulse Matrix Intelligence System</p>
-                <p>Ministry of Agriculture & Farmers Welfare Integrated Portal</p>
-            </div>
+        <div class="max-w-7xl mx-auto text-center space-y-1">
+            <p class="font-semibold text-[#FAF8F5]">AgriPulse Matrix Intelligence System</p>
+            <p>Ministry of Agriculture & Farmers Welfare Integrated Portal</p>
         </div>
     </footer>
 
-    <!-- JavaScript & Assistant Integration -->
-    <script src="/js/api-client.js"></script>
-    <script src="/js/session.js"></script>
-    <script src="/js/assistant.js"></script>
+    <!-- JavaScript -->
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
@@ -149,15 +116,6 @@
             sidebar.classList.toggle('-translate-x-full');
             overlay.classList.toggle('hidden');
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const token = params.get('token');
-            if (token) {
-                document.getElementById('jwt-token-display').textContent = 'Active Signed Token: ' + token.substring(0, 30) + '...';
-            }
-        });
     </script>
-    <script src="/js/assistant.js"></script>
 </body>
 </html>

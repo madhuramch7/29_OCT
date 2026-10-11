@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/assistant.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriPulse Matrix - Farm-to-Consumer QR Traceability</title>
+    <title>AgriPulse Matrix - Farm-to-Consumer Traceability</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -17,150 +16,110 @@
     <!-- Top Navigation Header -->
     <header class="bg-[#3D312A] text-white px-6 py-3.5 flex items-center justify-between sticky top-0 z-40 shadow-md">
         <div class="flex items-center space-x-4">
-            <!-- 3-Line Hamburger Menu Toggle Button -->
             <button onclick="toggleSidebar()" class="text-[#EFE9DF] hover:text-[#D9A378] text-xl focus:outline-none p-1 transition-colors">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-[#A0522D] flex items-center justify-center text-white font-bold text-xl shadow-md">
                     <i class="fa-solid fa-wheat-awn"></i>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight text-[#FAF8F5]">AgriPulse Matrix</h1>
-                    <p class="text-xs text-[#D9A378] font-medium tracking-wide">SMART AGRICULTURAL INTELLIGENCE</p>
+                    <p class="text-xs text-[#D9A378] font-medium tracking-wide">PROVENANCE & TRACEABILITY LEDGER</p>
                 </div>
             </div>
         </div>
-
-        <div class="flex items-center space-x-6">
-            <div class="flex items-center space-x-3">
-                <span class="text-xs text-[#EFE9DF]">Provenance & Traceability Ledger</span>
-            </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-xs text-[#EFE9DF]">Consumer Transparency Module</span>
         </div>
     </header>
 
-    <!-- Sliding Collapsible Sidebar Drawer -->
-    <!-- Unified Sidebar Navigation Component -->
-<aside id="sidebar-drawer" class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col justify-between shadow-xl">
-    <div class="p-6">
-        <div class="flex items-center space-x-3 mb-8">
-            <div class="h-9 w-9 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-lg text-white">
-                🌱
+    <!-- Sliding Sidebar Drawer Overlay -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-[#3D312A]/50 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+    
+    <!-- Collapsible Sidebar Drawer -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-[#312721] text-[#EFE9DF] border-r border-[#4A3B32] flex flex-col justify-between p-4 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl overflow-y-auto">
+        <div class="space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-[#4A3B32]">
+                <span class="text-sm font-bold text-[#D9A378] tracking-wider uppercase">Navigation Hub</span>
+                <button onclick="toggleSidebar()" class="text-[#B8A79B] hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <span class="text-xl font-bold tracking-tight text-white">AgriPulse Matrix</span>
+
+            <div class="space-y-4">
+                <nav class="space-y-1">
+                    <a href="dashboard.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-chart-line text-[#D9A378] w-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="onboarding.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-user-plus text-[#D9A378] w-5"></i>
+                        <span>Farmer Onboarding</span>
+                    </a>
+                    <a href="loans.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-hand-holding-dollar text-[#D9A378] w-5"></i>
+                        <span>KCC Loans</span>
+                    </a>
+                    <a href="traceability.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-[#42342C] text-[#FAF8F5] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-barcode text-purple-400 w-5"></i>
+                        <span>Traceability Ledger</span>
+                    </a>
+                    <a href="sbi-portal.html" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-[#B8A79B] hover:text-[#FAF8F5] hover:bg-[#42342C] transition-all text-sm font-medium">
+                        <i class="fa-solid fa-building-columns text-green-400 w-5"></i>
+                        <span>SBI Partner Portal</span>
+                    </a>
+                </nav>
+            </div>
         </div>
 
-        <nav class="space-y-1" id="nav-links-container">
-            <a href="dashboard.html" data-route="dashboard" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                Dashboard
-            </a>
-            <a href="onboarding.html" data-route="onboarding" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                Farmer Onboarding
-            </a>
-            <a href="loans.html" data-route="loans" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                KCC Loans
-            </a>
-            <a href="traceability.html" data-route="traceability" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                Traceability
-            </a>
-            <a href="sbi-portal.html" data-route="sbi-portal" class="nav-item flex items-center px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                SBI Partner Portal
-            </a>
-        </nav>
-    </div>
-
-    <div class="p-4 border-t border-slate-800">
-        <a href="index.html" class="flex items-center px-4 py-2 text-sm text-red-400 hover:text-red-300 rounded-lg hover:bg-slate-800 transition-colors">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-            Sign Out / Exit
-        </a>
-    </div>
-</aside>
-
-<script>
-    // Automatically highlight active route based on current URL path
-    document.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'dashboard.html';
-        document.querySelectorAll('#nav-links-container .nav-item').forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('bg-emerald-600', 'text-white');
-                link.classList.remove('text-slate-300');
-            }
-        });
-    });
-</script>
+        <div class="bg-[#3D312A] border border-[#4A3B32] p-3 rounded-xl text-center mt-4">
+            <p class="text-xs text-[#B8A79B]">Connected System</p>
+            <p class="text-sm font-bold text-[#D9A378]">Secure Ledger Active</p>
+        </div>
+    </aside>
 
     <!-- MAIN CONTENT AREA -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8 space-y-8">
-        
-        <div class="bg-white border border-[#EAE3D2] rounded-2xl p-6 shadow-sm space-y-4">
-            <span class="bg-[#EFE9DF] text-[#6B513E] text-xs font-bold px-3 py-1 rounded-full">Supply Chain Transparency</span>
-            <h2 class="text-2xl font-black text-[#3D312A] mt-2">Farm-to-Consumer QR Code Traceability & Provenance Ledger</h2>
-            <p class="text-xs text-[#6B574B]">Generate server-side QR codes linking consumers directly to verified farm harvest batches, geo-coordinates, and soil health metrics.</p>
-        </div>
+    <main class="flex-1 max-w-4xl w-full mx-auto px-6 py-12 space-y-6">
+        <div class="bg-white border border-[#EAE3D2] rounded-2xl p-8 shadow-sm space-y-6">
+            <div class="space-y-2">
+                <span class="bg-[#EFE9DF] text-[#6B513E] text-xs font-bold px-3 py-1 rounded-full">Consumer Transparency</span>
+                <h2 class="text-2xl font-black text-[#3D312A] mt-2">Farm-to-Consumer QR Code Traceability Ledger</h2>
+                <p class="text-xs text-[#6B574B]">Provide QR codes linking consumers directly to verified farm harvest batches, geo-coordinates, and soil health metrics.</p>
+            </div>
 
-        <!-- Traceability Generator Card -->
-        <div class="bg-white border border-[#EAE3D2] rounded-2xl p-6 shadow-sm space-y-6">
-            <h3 class="text-lg font-bold text-[#3D312A]">Generate Harvest Batch QR Code</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-[#FAF8F5] p-6 rounded-2xl border border-[#EAE3D2]">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-[#6B574B] uppercase mb-1">Batch ID / Produce Type</label>
-                        <input type="text" id="batch-id-input" value="AP-BATCH-2026-001" class="w-full bg-[#FAF8F5] border border-[#EAE3D2] rounded-xl px-4 py-2.5 text-xs text-[#3D312A] focus:outline-none focus:border-[#A0522D]">
+                        <input type="text" id="batch-input" readonly value="APM-BATCH-2026-001" class="w-full bg-white border border-[#EAE3D2] rounded-xl px-4 py-2.5 text-xs text-[#3D312A] focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-[#6B574B] uppercase mb-1">Quantity (Kg)</label>
-                        <input type="number" id="batch-qty-input" value="1500" class="w-full bg-[#FAF8F5] border border-[#EAE3D2] rounded-xl px-4 py-2.5 text-xs text-[#3D312A] focus:outline-none focus:border-[#A0522D]">
+                        <label class="block text-xs font-bold text-[#6B574B] uppercase mb-1">Farmer / Origin Village</label>
+                        <input type="text" id="origin-input" readonly value="Goverdhan, Mathura" class="w-full bg-white border border-[#EAE3D2] rounded-xl px-4 py-2.5 text-xs text-[#3D312A] focus:outline-none">
                     </div>
-                    <button onclick="generateBatchQR()" class="bg-[#2d5a27] text-white text-xs font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity">
-                        Generate Verified QR Code
+                    <button type="button" class="w-full bg-[#2d5a27] hover:bg-[#1e3d1a] text-white font-bold text-xs py-3.5 rounded-xl transition-colors shadow-sm">
+                        Verified QR Code Active
                     </button>
                 </div>
-                <div class="bg-[#FAF8F5] border border-[#EAE3D2] rounded-xl p-6 flex flex-col items-center justify-center text-center space-y-3">
-                    <div id="qr-code-display" class="w-32 h-32 bg-white border border-[#EAE3D2] rounded-lg flex items-center justify-center text-xs text-[#6B574B]">
-                        [QR Code Preview]
+
+                <div class="flex flex-col items-center justify-center bg-white p-6 rounded-2xl border border-[#EAE3D2] shadow-sm">
+                    <div class="mb-3 flex items-center justify-center p-4 bg-[#FAF8F5] rounded-xl h-36 w-36 border border-dashed border-[#6B574B]">
+                        <span class="text-xs text-[#6B574B] font-medium text-center">[QR Code Preview]</span>
                     </div>
-                    <p class="text-xs text-[#6B574B]">Scan with consumer phone camera to verify origin and organic certification.</p>
+                    <p class="text-[11px] text-[#6B574B] text-center">Scan with consumer phone camera to verify origin and organic certification.</p>
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- Footer -->
     <footer class="bg-[#3D312A] text-[#B8A79B] text-xs py-6 px-6 border-t border-[#524238] mt-auto">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div>
-                <p class="font-semibold text-[#FAF8F5]">AgriPulse Matrix Intelligence System</p>
-                <p>Ministry of Agriculture & Farmers Welfare Integrated Portal</p>
-            </div>
+        <div class="max-w-7xl mx-auto text-center space-y-1">
+            <p class="font-semibold text-[#FAF8F5]">AgriPulse Matrix Intelligence System</p>
+            <p>Ministry of Agriculture & Farmers Welfare Integrated Portal</p>
         </div>
     </footer>
 
     <!-- JavaScript & Assistant Integration -->
-    <script src="/js/api-client.js"></script>
-    <script src="/js/session.js"></script>
-    <script src="/js/assistant.js"></script>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
-
-        function generateBatchQR() {
-            const batchId = document.getElementById('batch-id-input').value;
-            const qty = document.getElementById('batch-qty-input').value;
-            document.getElementById('qr-code-display').innerHTML = '<div class="p-2 font-bold text-[#3D312A] text-[10px]">QR Code Generated<br><span class="text-[#A0522D]">' + batchId + '</span><br>(' + qty + ' Kg)</div>';
-        }
-    </script>
-    <script src="/js/assistant.js"></script>
-</body>
-</html>
+    <script src="/js
