@@ -1,6 +1,5 @@
 package com.agripulse.config;
 
-import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +11,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -27,39 +31,37 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
-                if (request.getRequestURI().startsWith("/api/")) {
-                    response.setStatus(401);
-                    response.setContentType("application/json");
-                    response.getWriter().write("{\"error\":\"Unauthorized\"}");
-                } else {
-                    response.sendRedirect("/welcome.html");
-                }
-            }))
-      .authorizeHttpRequests(auth -> auth
-                .dispatcherTypeMatchers(DispatcherType.ERROR, DispatcherType.FORWARD).permitAll()
+            .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/",
-                    "/index.html",
-                    "/welcome.html",
-                    "/login",
-                    "/login.html",
-                    "/register.html",
-                    "/error",
-                    "/favicon.ico",
-                    "/css/**",
-                    "/js/**",
-                    "/images/**",
-                    "/api/auth/**",
-                    "/api/test/**",
-                    "/api/crop-recommendations/**"
+                    "/", "/index.html", "/login.html", "/register.html", 
+                    "/dashboard.html", "/loans.html", "/sbi-portal.html", 
+                    "/admin.html", "/traceability.html", "/welcome.html", 
+                    "/css/**", "/js/**", "/api/auth/**", "/h2-console/**", 
+                    "/api/test/**", "/api/ai/**", "/api/service/**", 
+                    "/api/recommendations/**", "/api/market/**", 
+                    "/api/farmer/**", "/api/loans/**", "/api/onboarding/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
